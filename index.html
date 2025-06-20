@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday My Love</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #ffe6f0, #ffd6e0);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: url('https://images.unsplash.com/photo-1520975922131-ebc6c4c60ca9?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      color: white;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin: 0;
+      animation: candleFlicker 2s infinite;
+    }
+
+    header p {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      margin-top: 10px;
+      text-align: center;
+      padding: 0 15px;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .btn {
+      background-color: #ff8ca8;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      z-index: 2;
+    }
+
+    .btn:hover {
+      background-color: #f0627d;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+
+    .falling {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: fall 6s linear infinite;
+      opacity: 0.9;
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDMiIHZpZXdCb3g9IjAgMCA0OCA0MyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjQgNDAuNWMtMy4zLTMuNC02LjctNi41LTEwLjEtOS41QzkuMSAyMi41IDMgMTYuOSAzIDExLjVDMyAzLjggOS43IDAgMTYuNSA0LjRDMTguMiA1LjYgMTkuOCA3LjUgMjEgOS4yYzEuMi0xLjcgMi44LTMuNiA0LjUtNC44QzM4LjMgMCA0NSAzLjggNDUgMTEuNUM0NSAxNi45IDM4LjkgMjIuNSA0Mi4xIDMxYy0zLjQgMy0xNi4yIDE3LjItMTguMSAxOS41WiIgZmlsbD0iI2ZmMzM2NiIvPjwvc3ZnPg==");
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    @keyframes candleFlicker {
+      0%, 100% { opacity: 1; text-shadow: 0 0 10px #fff4e6; }
+      50% { opacity: 0.8; text-shadow: 0 0 20px #ffdbb9; }
+    }
+
+    .gallery {
+      overflow: hidden;
+      padding: 20px 0;
+    }
+
+    .gallery-track {
+      display: flex;
+      animation: scrollGallery 40s linear infinite;
+      gap: 15px;
+      width: fit-content;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      flex-shrink: 0;
+    }
+
+    @keyframes scrollGallery {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .letter {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 600px;
+      margin: 20px auto;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .letter.expanded .content {
+      display: block;
+    }
+
+    .letter .content {
+      display: none;
+      margin-top: 10px;
+      font-size: 1rem;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    #flowerMessage {
+      font-size: 1.5rem;
+      color: #d6336c;
+      font-weight: bold;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .rotating-heart {
+      display: inline-block;
+      animation: flipHeart 2s linear infinite;
+      transform-style: preserve-3d;
+    }
+
+    @keyframes flipHeart {
+      0%   { transform: rotateY(0deg); }
+      50%  { transform: rotateY(180deg); }
+      100% { transform: rotateY(360deg); }
+    }
+
+    #quoteCarousel {
+      font-size: 1.2rem;
+      font-style: italic;
+      max-width: 600px;
+      margin: auto;
+      color: #d6336c;
+      transition: opacity 1s;
+      padding-bottom: 30px;
+    }
+
+    /* ✅ Mobile Optimizations */
+    @media (max-width: 768px) {
+      .gallery img {
+        width: 140px;
+        height: 140px;
+      }
+      .letter {
+        width: 90%;
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2.3rem;
+      }
+
+      header p {
+        font-size: 1.1rem;
+      }
+
+      .gallery img {
+        width: 110px;
+        height: 110px;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
+        margin: auto;
+      }
+
+      .message, #flowerMessage {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ❤️ Background Music -->
+  <audio id="bgMusic" autoplay loop preload="auto">
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="falling" id="fallingContainer"></div>
+
+  <header>
+    <h1>Happy Birthday, My Love <span class="rotating-heart">❤️</span></h1>
+    <p>Today is all about you Dummu.</p>
+  </header>
+
+  <section id="quoteCarousel"></section>
+
+  <section>
+    <h2>Here’s a little surprise...</h2>
+    <button class="btn" onclick="showMessage()">Click to Reveal</button>
+    <div id="messageBox" class="hidden message">
+      <p>You are the sunshine in my world, the sparkle in my eyes, and the warmth in my heart. Every moment with you is a treasure, and today, I just want to remind you how deeply I love you. ❤️</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Our Memories</h2>
+    <div class="gallery">
+      <div class="gallery-track">
+        <!-- Repeat images for smooth scroll -->
+        <img src="Pics/IMG-20250408-WA0027.jpg" alt="Memory 1">
+        <img src="Pics/IMG-20250610-WA0003.jpg" alt="Memory 2">
+        <img src="Pics/IMG-20250610-WA0004.jpg" alt="Memory 3">
+        <img src="Pics/IMG-20250610-WA0005.jpg" alt="Memory 4">
+        <img src="Pics/IMG-20250610-WA0006.jpg" alt="Memory 5">
+        <img src="Pics/IMG-20250610-WA0008.jpg" alt="Memory 6">
+        <img src="Pics/IMG-20250610-WA0007.jpg" alt="Memory 7">
+        <img src="Pics/IMG-20250610-WA0009.jpg" alt="Memory 8">
+        <!-- Duplicate for infinite loop -->
+        <img src="Pics/IMG-20250408-WA0027.jpg" alt="Memory 1 duplicate">
+        <img src="Pics/IMG-20250610-WA0003.jpg" alt="Memory 2 duplicate">
+        <img src="Pics/IMG-20250610-WA0004.jpg" alt="Memory 3 duplicate">
+        <img src="Pics/IMG-20250610-WA0005.jpg" alt="Memory 4 duplicate">
+        <img src="Pics/IMG-20250610-WA0006.jpg" alt="Memory 5 duplicate">
+        <img src="Pics/IMG-20250610-WA0008.jpg" alt="Memory 6 duplicate">
+        <img src="Pics/IMG-20250610-WA0007.jpg" alt="Memory 7 duplicate">
+        <img src="Pics/IMG-20250610-WA0009.jpg" alt="Memory 8 duplicate">
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>My Letter to You</h2>
+    <div class="letter" onclick="toggleLetter(this)">
+      <p><strong>Click to open the letter 💌</strong></p>
+      <div class="content">
+        <p>My sweetest love,<br><br>
+        Every heartbeat of mine is synced to your smile. I might not be perfect, but my love for you is endlessly real. You are my light, my reason, and my forever.
+        I know I have made a lot of mistakes in the past, I have hurt you, I have even been rude to you, despite all these things which hurt you , you always chose to stay with me.
+        I am very grateful to have you in my life. Now because of all my past mistakes which are haunting you, you are not able to move on, I am really very sorry for those.
+        I feel that I have changed and become a better person than I was earlier during our initial relationship days. I would like to beg you to give me one more last chance so that I can prove myself to you.
+        I will even convince our parents for our marriage, I will take care of you like my daughter, you are my princess.
+        To change your mind and remove those haunting past mistakes, for a certain time period till you get settled in your life by getting a job and doing certain other things, We both will be
+        the bestfriends what we were earlier, once we both get settled you give me a chance and after that it would go as your wish. I have loved you not just for timepass or to leave you, I have loved you to stay with you my entire life.
+        I hope you believe in god, so let us do our job and leave the rest to him, he knows us better than you and me, and if we are meant to be together he will definitely make it happen.
+        I have loved you and anything won't change my love for you, you will be the only one. You be my support system and I be your support system.
+        We will both travel the world together, have fun and do everything that you like. You are my little princess and I will take care of you very well. <br><br>
+        Happy Birthday my queen. 🌹<br>
+        Forever yours,<br>Ratan 💕</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Special Surprise</h2>
+    <button class="btn" onclick="showerHearts()">Click for a surprise 🌸</button>
+    <div id="flowerMessage">For you, My Dummu 🌹</div>
+  </section>
+
+  <script>
+    function showMessage() {
+      document.getElementById("messageBox").classList.remove("hidden");
+    }
+
+    function toggleLetter(elem) {
+      elem.classList.toggle("expanded");
+    }
+
+    function showerHearts() {
+      const container = document.getElementById("fallingContainer");
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+        container.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+      }
+      document.getElementById("flowerMessage").style.display = 'block';
+    }
+
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+      document.getElementById("fallingContainer").appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 500);
+
+    const quotes = [
+      "You are my today and all of my tomorrows.",
+      "In your smile, I see something more beautiful than the stars.",
+      "You make my heart smile just by being you.",
+      "Every love story is beautiful, but ours is my favorite.",
+      "You are the reason I believe in love."
+    ];
+    let quoteIndex = 0;
+    const quoteCarousel = document.getElementById('quoteCarousel');
+    function rotateQuotes() {
+      quoteCarousel.style.opacity = 0;
+      setTimeout(() => {
+        quoteCarousel.textContent = quotes[quoteIndex];
+        quoteCarousel.style.opacity = 1;
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+      }, 1000);
+    }
+    setInterval(rotateQuotes, 4000);
+    rotateQuotes();
+
+    // Autoplay fallback for mobile
+    const music = document.getElementById("bgMusic");
+    window.addEventListener("load", () => {
+      music.play().catch(() => {
+        const resumeAudio = () => {
+          music.play().then(() => {
+            document.removeEventListener("click", resumeAudio);
+            document.removeEventListener("scroll", resumeAudio);
+          }).catch(() => {});
+        };
+        document.addEventListener("click", resumeAudio);
+        document.addEventListener("scroll", resumeAudio);
+      });
+    });
+  </script>
+</body>
+</html>
